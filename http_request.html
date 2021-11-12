@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="#" />
+		<title>simple API call</title>
+	</head>
+	<body>
+		<button onclick="getWeather()">Get weather data</button>
+		<div id="demo"></div>
+	</body>
+</html>
+<script>
+	function doHttpRequest(type, url, body, callback) {
+		var xobj = new XMLHttpRequest();
+		xobj.open(type, url, true);
+		xobj.send(body);
+		xobj.onreadystatechange = () => {
+			if (xobj.readyState == 4 && xobj.status == "200") {
+				callback(xobj.responseText);
+			}
+		};
+	}
+
+	function displayResult(obj) {
+        let text = "<h2>weather in Hove lon=4.46° lat=51.15°</h2>";
+		text += "<ul>";
+		for (let x in obj.dataseries) {
+			text += "<li>date: " + obj.dataseries[x].date;
+			text += " - weather: " + obj.dataseries[x].weather;
+			text += " - temperature: " + obj.dataseries[x].temp2m.min;
+			text += "-" + obj.dataseries[x].temp2m.max + "°C </li>";
+		}
+		text += "</ul>";
+		document.getElementById("demo").innerHTML = text;
+	}
+
+	function getWeather() {
+		//let user know data is loading
+		document.getElementById("demo").innerHTML = "<h2>loading API data...</h2>";
+
+		type = "GET";
+		url = "http://www.7timer.info/bin/api.pl?lon=4.46&lat=51.15&product=civillight&output=json";
+        // body is usefull for POST requests
+		body = null; 
+        // ()=>{} is a function and in this case, a callback function passed as param
+		doHttpRequest(type, url, body, (response) => {
+			const response_object = JSON.parse(response);
+            displayResult(response_object);
+		});
+	}
+</script>
