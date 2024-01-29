@@ -1,0 +1,10 @@
+{
+	"name": "huizen ",
+	"plekjes": [
+		{ "name": "mijn huis", "_id": "61923266930be0c7dd117200" },
+		{ "name": "pippa hove", "_id": "61923266930be0c7dd117202" }
+	],
+	"collector": "Tijs",
+	"_id": "61923266930be0c7dd117204",
+	"__v": 0
+}

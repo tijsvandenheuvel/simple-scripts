@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="menu dropdown dropdown-6">
+        <ul class="dropdown_menu dropdown_menu--animated dropdown_menu-6">
+            <li class="dropdown_item-1">
+                item 1
+            </li>
+            <li class="dropdown_item-2">
+                item 2
+            </li>
+        </ul>
+    </div>
+    
+</body>
+</html>
+<style>
+li{
+    /* list-style-type: none; */
+}
+.dropdown{
+   padding: 20px 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   background: #C06162;
+   background: #34495e;
+   position: relative;
+   font-size: 18px;
+   perspective: 1000px;
+   z-index: 100;
+}
+
+.dropdown :hover {
+     background: #2980b9 ;
+     cursor: pointer;
+}
+.dropdown :hover .dropdown_menu li {
+    display: block;
+}
+</style>

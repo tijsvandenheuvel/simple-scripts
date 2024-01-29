@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="#" />
+		<title>STER BAL</title>
+	</head>
+	<body>
+		Slider R
+		<input type="range" min="0" max="255" value="0" id="redRange" />
+        <span id="redValue"></span>
+        <br />
+
+		Slider G
+		<input type="range" min="0" max="255" value="0" id="greenRange" />
+        <span id="greenValue"></span>
+        <br />
+
+		Slider B
+		<input type="range" min="0" max="255" value="0" id="blueRange" />
+        <span id="blueValue"></span>
+        <br />
+
+        <br/>
+		<div id="square"></div>
+        <br/>
+
+		<button id="zetKleurButton" onclick="getKleur()">Zet kleur</button><br />
+		<!-- Effecten<BR> -->
+		<button onclick="get(1)">Rode stippen</button><br />
+		<button onclick="get(2)">Blauwe stippen</button><br />
+		<button onclick="get(3)">Oceaan stippen</button><br />
+		<button onclick="get(4)">Blauwe slinger</button><br />
+		<button onclick="get(5)">Groen Oceaan stippen</button><br />
+		<button onclick="get(6)">Blauwe wave</button><br />
+		<button onclick="get(7)">Gele adem</button><br />
+		<button onclick="get(8)">Witte strobo</button><br />
+		<button onclick="get(9)">Lava stippen</button><br />
+		<button onclick="get(10)">Witte strobo 2</button><br />
+		<button onclick="get(11)">Rood wit wave</button><br />
+		<button onclick="get(12)">Blauwe slinger</button><br />
+		<button onclick="get(13)">Geel Oceaan stippen</button><br />
+		<button onclick="get(14)">Witte strobo 3</button><br />
+		<button onclick="get(15)">Regenboog</button><br />
+		<button onclick="get(16)">Regenboog banden</button><br />
+		<div id="demo"></div>
+	</body>
+</html>
+<script>
+	function doHttpRequest(type, url, body, callback) {
+		var xobj = new XMLHttpRequest();
+		xobj.open(type, url, true);
+		xobj.send(body);
+		xobj.onreadystatechange = () => {
+			if (xobj.readyState == 4 && xobj.status == "200") {
+				callback(xobj.responseText);
+			}
+		};
+	}
+
+	function get(nr) {
+		let url = "http://81.165.86.218:85/bal/win&PL=" + nr;
+		doHttpRequest("GET", url, null, (response) => {});
+	}
+
+    function setSquareColor(){
+        document.getElementById("square").style.backgroundColor = `rgb(${slider1.value},${slider2.value},${slider3.value})`;
+        document.getElementById("zetKleurButton").style.color = `rgb(${slider1.value},${slider2.value},${slider3.value})`;
+    }
+
+	var slider1 = document.getElementById("redRange");
+	var output1 = document.getElementById("redValue");
+	output1.innerHTML = slider1.value;
+	slider1.onchange = function () {
+		output1.innerHTML = this.value;
+        console.log('hi')
+        setSquareColor();
+	};
+
+	var slider2 = document.getElementById("greenRange");
+	var output2 = document.getElementById("greenValue");
+	output2.innerHTML = slider2.value;
+	slider2.oninput = function () {
+        console.log('ho')
+		output2.innerHTML = this.value;
+        setSquareColor();
+	};
+
+	var slider3 = document.getElementById("blueRange");
+	var output3 = document.getElementById("blueValue");
+	output3.innerHTML = slider3.value;
+	slider3.onchange = function () {
+		output3.innerHTML = this.value;
+        setSquareColor();
+	};
+
+	function getKleur() {
+		let R = slider1.value;
+		let G = slider2.value;
+		let B = slider3.value;
+		let url = `http://81.165.86.218:85/bal/win&T=1&A=128&FX=0&SX=0&R=${R}&G=${G}&B=${B}`;
+		doHttpRequest("GET", url, null, (response) => {});
+	}
+</script>
+<style>
+	#square {
+		height: 50px;
+		width: 50px;
+		background-color: #000;
+	}
+</style>

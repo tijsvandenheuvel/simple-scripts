@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.profiel {
+				grid-area: linksboven;
+			}
+			.titel {
+				grid-area: middenboven;
+			}
+			.menu {
+				grid-area: rechtsboven;
+			}
+			.fotos {
+				grid-area: midden;
+			}
+
+			.grid-container {
+				display: grid;
+				grid:
+					"linksboven middenboven rechtsboven"
+					". midden .";
+				grid-template-columns: 100px auto 100px;
+				grid-gap: 10px;
+				background-color: #333;
+				padding: 10px;
+			}
+
+			.grid-container div {
+				background-color: #fff;
+				text-align: center;
+				padding: 15px 0;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="profiel">foto</div>
+			<div class="titel">checklist</div>
+			<div class="menu">ham</div>
+			<div class="fotos">
+				foto <br />
+				kan eender wa zijn <br />
+				gwn lijst van fotos <br />
+				zoals dit <br />
+				<ul>
+					<li>foto 1</li>
+					<li>foto 2</li>
+					<li>foto 3</li>
+				</ul>
+                <img src="img/img.jpg"/>
+			</div>
+		</div>
+	</body>
+</html>
